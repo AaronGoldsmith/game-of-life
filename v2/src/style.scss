@@ -1,0 +1,67 @@
+$theme-dark-bg: #333333aa;
+$theme-dark-font: #fff;
+$default-font: 'Raleway', sans-serif;
+$bg: $theme-dark-bg;
+
+
+body {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+  color: #fff;
+  background-color: $bg;
+  font-family: $default-font;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  #app{
+    margin: 10px;
+  }
+
+  #cell-config{
+    width: 75px;
+  }
+  #configs{
+    display:inline-flex;
+    justify-content: space-evenly;
+    background: #333;
+  }
+
+  section{
+    padding: 12px;
+    display: grid;
+  }
+}
+
+
+@media screen and (min-width: 1300px) {
+  #configs{
+    display: grid;
+    position: absolute;
+    // right: 80px;
+    // top: 120px;
+    width: unset !important;
+  }
+}
+
+h1{
+  margin: 0px 10px;
+  font-size: 28px;
+  float: left;
+  justify-self: start;
+}
+h2{
+  text-align: center;
+}
+.btn{
+  border-radius: 18px;
+  box-shadow: 0px 0px 3px #333;
+  border: 0;
+  margin: 4px;
+}
+
+

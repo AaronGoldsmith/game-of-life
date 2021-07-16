@@ -1,0 +1,71 @@
+<html>
+  <head><script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-container">
+      <h1>Conway GOL</h1>
+      <div id="app"></div>
+      <div id="configs">
+        <section id="size">
+        <h3>Cell Configuration</h3>
+        <label>
+          Board Size
+          <select id="cell-config">
+            <option value=10>10x10</option>
+            <option value=50>50x50</option>
+            <option value=100>100x100 (slow)</option>
+            <option value=200>200x200 (very slow)</option>
+          </select>
+      </label>
+
+      <label>
+        Outline Cells:
+        <input id="cell-stroke" type="checkbox" >
+      </label>
+      </section>
+      <section>
+        <h3>Board Options</h3>
+        <button class="btn board-controls"> Play/Pause ⏯</button>
+        <button class="btn" id="tick">Advance Board</button>
+        <button class="btn" id="save">Save Board</button>
+        <input type="file" id="load" onchange="load(this)" >Load Board</button>
+      </section>
+     
+    </div>
+    </div>
+    <script src="src/app.ts"></script>
+    <script>
+
+      function load(input){
+        let file = input.files[0];
+
+        let reader = new FileReader();
+
+        reader.readAsText(file);  
+
+        reader.onload = function() {
+          let rows = reader.result.split('\n');
+          let board = []
+          for(let i = 0; i< rows.length; i++){
+            let cells = rows[i].split(',')
+            board.push(cells)
+          }
+          // window.localStorage[`board`] = JSON.stringify(board);
+          const e = new CustomEvent('updatedBoard',{ detail: 
+            JSON.stringify(board)
+          });
+          document.querySelector('canvas').dispatchEvent(e)
+          // console.log(window.localStorage.getItem('board'))
+        };
+        
+        reader.onerror = function() {
+          console.log(reader.error);
+        };
+      }
+
+    </script>
+  </body>
+</html>

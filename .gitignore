@@ -1,0 +1,10 @@
+
+# dependencies
+node_modules
+
+# built files
+dist
+
+# local cache
+.cache
+.DS_Store
